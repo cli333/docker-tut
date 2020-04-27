@@ -1,5 +1,6 @@
 import express from "express";
 import redis from "redis";
+import process from "process";
 
 const app = express();
 const client = redis.createClient({
@@ -12,6 +13,7 @@ client.set("visits", String(0));
 app.use(express.json());
 
 app.get("/", (req: express.Request, res: express.Response) => {
+  // process.exit(0);
   client.get("visits", (err: Error | null, visits: string) => {
     res.json(`Number of visits is ${visits}`);
     client.set("visits", String(Number(visits) + 1));
