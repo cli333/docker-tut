@@ -1,9 +1,8 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 
 const App = (): any => {
-  return <div className="App">HELLO docker!🐳</div>;
+  return <div className="App">Hello DOCKER@@! CHANGED IN feature</div>;
 };
 
 export default App;

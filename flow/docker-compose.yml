@@ -1,6 +1,6 @@
 version: "3"
 services:
-  react-app:
+  web:
     build:
       context: .
       dockerfile: Dockerfile.dev
@@ -13,3 +13,15 @@ services:
       CHOKIDAR_USEPOLLING: "true"
     stdin_open: true
     tty: true
+  # tests:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.dev
+  #   volumes:
+  #     - /usr/app/node_modules
+  #     - .:/usr/app
+  #   command: ["npm", "run", "test"]
+  #   environment:
+  #     CHOKIDAR_USEPOLLING: "true"
+  #   stdin_open: true
+  #   tty: true

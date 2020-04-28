@@ -1,0 +1,34 @@
+# tell travis we need docker running
+sudo: required
+services:
+  - docker
+
+# tell travis to build using dockerfile.dev in current directory
+before_install:
+  - docker build -t cli333/docker-react -f Dockerfile.dev .
+
+# travis runs test and exits
+# special flag to exit immediately, otherwise hangs
+script:
+  - docker run -e CI=true cli333/docker-react npm run test -- --coverage
+
+# deploy to aws/elastic beanstalk
+# region: aws region
+# app: aws app name
+# env: aws environment name
+# bucket name: aws s3 bucket name
+# bucket path: just create a new directory of the app name
+# on: branch: master, only push updates from the master branch, not the feature
+
+# keys stored on travis-ci
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "docker-react"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-496849270774"
+  bucket_path: "docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
