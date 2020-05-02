@@ -1,0 +1,24 @@
+docker container run --publish 80:80 nginx
+
+docker container run --publish 80:80 --detach nginx		// run in the background
+
+- docker container run always starts a new container from the image
+
+docker container run --publish 80:80 --detach --name mynginx nginx 		// choose a name for container
+
+docker container logs mynginx
+
+docker container inspect nginx	// json array of data
+
+docker container stats nginx	// streaming live data of container
+
+docker container top nginx // process list in container
+
+docker container run -it // start continaer interactively
+
+docker container exec -it // run additional commands in running container
+
+docker container run -it --name proxy nginx bash
+
+docker container run -it --name alpine alpine sh	// shell
+
