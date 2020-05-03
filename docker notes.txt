@@ -8,7 +8,7 @@ docker container run --publish 80:80 --detach --name mynginx nginx 		// choose a
 
 docker container logs mynginx
 
-docker container inspect nginx	// json array of data
+docker container inspect nginx	// json data of container
 
 docker container stats nginx	// streaming live data of container
 
@@ -21,4 +21,56 @@ docker container exec -it // run additional commands in running container
 docker container run -it --name proxy nginx bash
 
 docker container run -it --name alpine alpine sh	// shell
+
+docker container run -p // exposes the port
+
+docker container port <container> // port info on a container
+
+docker network ls
+
+docker network inspect
+
+docker network create <myname>
+
+docker network connect
+
+docker network disconnect
+
+docker container run -d -p 80:80 --network <networkname> --name webhost nginx
+
+// -rm flag automatically removes the container after exiting
+
+docker container run --rm -it nginx sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
