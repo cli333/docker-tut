@@ -1,0 +1,32 @@
+version: "3.6"
+
+services:
+  api:
+    container_name: api
+    # image: node:8.11.1
+    build:
+      context: ./smart-brain-api
+      dockerfile: Dockerfile
+    volumes:
+      - ./smart-brain-api:/app
+      - /app/node_modules
+    ports:
+      - "5000:5000"
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
+      POSTGRES_URI: postgres://sally:secret@postgres:5432/smart-brain-docker
+      # link to service postgres indicated below
+    links:
+      - postgres
+  postgres:
+    container_name: postgres
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: sally
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: smart-brain-docker
+      POSTGRES_HOST: postgres
